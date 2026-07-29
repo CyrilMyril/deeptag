@@ -49,7 +49,7 @@ export const audioParser: Parser = {
     ];
 
     const notes: MetadataField[] = [
-      { key: "comment", label: "Comment", value: c.comment?.map((x) => (typeof x === "string" ? x : x.text)).join(" / ") ?? null, kind: "longtext", editable: isMp3(file) },
+      { key: "comment", label: "Comment", value: c.comment?.map((x: any) => (typeof x === "string" ? x : x.text)).join(" / ") ?? null, kind: "longtext", editable: isMp3(file) },
     ];
 
     const hiddenEntries = Object.entries(c).filter(
@@ -93,7 +93,7 @@ export const audioParser: Parser = {
     if (map.composer !== undefined) writer.setFrame("TCOM", [map.composer]);
     if (map.album !== undefined) writer.setFrame("TALB", map.album);
     if (map.genre !== undefined) writer.setFrame("TCON", [map.genre]);
-    if (map.year !== undefined && /^\d{4}$/.test(map.year)) writer.setFrame("TYER", map.year);
+    if (map.year !== undefined && /^\d{4}$/.test(map.year)) writer.setFrame("TYER" as any, map.year);
     if (map.track !== undefined) writer.setFrame("TRCK", map.track);
     if (map.comment !== undefined) {
       writer.setFrame("COMM", { description: "", text: map.comment, language: "eng" });

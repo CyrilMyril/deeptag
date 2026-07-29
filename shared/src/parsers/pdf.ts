@@ -83,6 +83,6 @@ export const pdfParser: Parser = {
     }
 
     const out = await doc.save();
-    return new Blob([out], { type: "application/pdf" });
+    return new Blob([out.slice().buffer], { type: "application/pdf" });
   },
 };
