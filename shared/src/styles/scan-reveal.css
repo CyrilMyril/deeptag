@@ -1,0 +1,56 @@
+.dt-scan-wrap {
+  position: relative;
+}
+
+.dt-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--dt-accent), transparent);
+  box-shadow: 0 0 12px 2px var(--dt-accent);
+  animation: dt-sweep 900ms var(--dt-ease) forwards;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.dt-scan-content {
+  animation: dt-content-in 700ms var(--dt-ease) both;
+}
+
+@keyframes dt-sweep {
+  0% {
+    top: 0%;
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes dt-content-in {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dt-scan-line {
+    display: none;
+  }
+  .dt-scan-content {
+    animation: none;
+  }
+}

@@ -1,0 +1,63 @@
+:root {
+  --dt-bg: #0b0d12;
+  --dt-bg-raised: #10131a;
+  --dt-surface: #131720;
+  --dt-surface-raised: #1a1f2b;
+  --dt-border: #232839;
+  --dt-border-strong: #333a4e;
+
+  --dt-text-primary: #edeff4;
+  --dt-text-secondary: #8a93a6;
+  --dt-text-muted: #565e70;
+
+  --dt-accent: #ffb24d;
+  --dt-accent-soft: #ffb24d26;
+  --dt-data: #4fd8c4;
+  --dt-data-soft: #4fd8c426;
+  --dt-danger: #ff6b6b;
+  --dt-danger-soft: #ff6b6b26;
+
+  --dt-font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --dt-font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --dt-font-mono: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+
+  --dt-radius-sm: 6px;
+  --dt-radius-md: 10px;
+  --dt-radius-lg: 16px;
+
+  --dt-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--dt-bg);
+  color: var(--dt-text-primary);
+  font-family: var(--dt-font-body);
+}
+
+::selection {
+  background: var(--dt-accent-soft);
+  color: var(--dt-text-primary);
+}
+
+/* thin scrollbars that match the instrument feel */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--dt-border-strong) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--dt-border-strong);
+  border-radius: 8px;
+}
