@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import type { ParsedMetadata, SaveMode } from "../types";
 import { formatBytes } from "../utils/format";
 import { FileIcon, CloseIcon } from "./icons";
@@ -24,6 +24,16 @@ const CATEGORY_LABEL: Record<ParsedMetadata["category"], string> = {
 };
 
 export function MetadataPanel({ meta, editing, values, hasChanges, busy, onChange, onStartEdit, onCancelEdit, onSave, onReset }: MetadataPanelProps) {
+  const [showReadOnly, setShowReadOnly] = useState(true);
+
+  const visibleGroups = useMemo(
+    () =>
+      meta.groups
+        .map((g) => ({ ...g, fields: showReadOnly ? g.fields : g.fields.filter((f) => f.editable) }))
+        .filter((g) => g.fields.length > 0),
+    [meta.groups, showReadOnly]
+  );
+
   return (
     <ScanReveal triggerKey={`${meta.fileName}-${meta.fileSize}`}>
       <div className="flex flex-col gap-6">
@@ -50,19 +60,31 @@ export function MetadataPanel({ meta, editing, values, hasChanges, busy, onChang
           </button>
         </div>
 
-        <ActionBar
-          editing={editing}
-          hasChanges={hasChanges}
-          canWrite={meta.write.supported}
-          writeReason={meta.write.reason}
-          busy={busy}
-          onStartEdit={onStartEdit}
-          onCancelEdit={onCancelEdit}
-          onSave={onSave}
-        />
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <ActionBar
+            editing={editing}
+            hasChanges={hasChanges}
+            canWrite={meta.write.supported}
+            writeReason={meta.write.reason}
+            busy={busy}
+            onStartEdit={onStartEdit}
+            onCancelEdit={onCancelEdit}
+            onSave={onSave}
+          />
+
+          <label className="flex cursor-pointer select-none items-center gap-2 text-xs text-[var(--dt-text-secondary)]">
+            <input
+              type="checkbox"
+              checked={showReadOnly}
+              onChange={(e) => setShowReadOnly(e.target.checked)}
+              className="h-3.5 w-3.5 accent-[var(--dt-accent)]"
+            />
+            Show read-only fields
+          </label>
+        </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 2xl:grid-cols-3">
-          {meta.groups.map((group) => (
+          {visibleGroups.map((group) => (
             <SectionCard key={group.id} group={group} editing={editing} values={values} onChange={onChange} />
           ))}
         </div>

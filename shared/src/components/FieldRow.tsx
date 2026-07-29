@@ -15,8 +15,8 @@ export function FieldRow({ field, value, editing, onChange }: FieldRowProps) {
 
   return (
     <div className="flex flex-col gap-1.5 border-b border-[var(--dt-border)] py-3 last:border-b-0 sm:flex-row sm:gap-4">
-      <div className="flex w-full shrink-0 items-center gap-2 sm:w-48 sm:pt-1.5">
-        <span className="text-sm text-[var(--dt-text-secondary)]" title={field.hint}>
+      <div className="flex w-full min-w-0 shrink-0 flex-wrap items-center gap-x-2 gap-y-1 sm:w-48 sm:pt-1.5">
+        <span className="min-w-0 truncate text-sm text-[var(--dt-text-secondary)]" title={field.hint ?? field.label}>
           {field.label}
         </span>
         {editing && <Badge kind={field.editable ? "editable" : "readonly"} />}

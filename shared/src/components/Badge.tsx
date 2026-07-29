@@ -5,7 +5,7 @@ export function Badge({ kind }: { kind: "editable" | "readonly" }) {
   return (
     <span
       className={[
-        "inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-medium tracking-wide",
+        "inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-2 py-0.5 text-[11px] font-medium tracking-wide",
         isEditable
           ? "text-[var(--dt-data)] bg-[var(--dt-data-soft)]"
           : "text-[var(--dt-text-muted)] bg-white/[0.03]",

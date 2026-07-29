@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import type { MetadataGroup } from "../types";
 import { FieldRow } from "./FieldRow";
 
@@ -9,7 +9,13 @@ export interface SectionCardProps {
   onChange: (key: string, value: string) => void;
 }
 
+const DEFAULT_VISIBLE = 12;
+
 export function SectionCard({ group, editing, values, onChange }: SectionCardProps) {
+  const [expanded, setExpanded] = useState(false);
+  const hasMore = group.fields.length > DEFAULT_VISIBLE;
+  const visibleFields = expanded || !hasMore ? group.fields : group.fields.slice(0, DEFAULT_VISIBLE);
+
   return (
     <section className="rounded-[var(--dt-radius-md)] border border-[var(--dt-border)] bg-[var(--dt-surface)] p-5">
       <div className="mb-1 flex items-baseline gap-2">
@@ -19,7 +25,7 @@ export function SectionCard({ group, editing, values, onChange }: SectionCardPro
         {group.title}
       </h3>
       <div>
-        {group.fields.map((field) => (
+        {visibleFields.map((field) => (
           <FieldRow
             key={field.key}
             field={field}
@@ -29,6 +35,14 @@ export function SectionCard({ group, editing, values, onChange }: SectionCardPro
           />
         ))}
       </div>
+      {hasMore && (
+        <button
+          onClick={() => setExpanded((e) => !e)}
+          className="mt-3 text-xs font-medium text-[var(--dt-accent)] hover:underline"
+        >
+          {expanded ? "Show fewer" : `Show all ${group.fields.length} tags`}
+        </button>
+      )}
     </section>
   );
 }
