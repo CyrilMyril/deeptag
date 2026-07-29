@@ -184,6 +184,23 @@ export default function App() {
         </div>
       </section>
 
+      <section className="border-t border-[var(--dt-border)] px-6 py-10 sm:px-10">
+        <div className="mx-auto flex max-w-[1600px] flex-col items-center gap-3 text-center">
+          <p className="font-[var(--dt-font-mono)] text-xs text-[var(--dt-accent)]">// support</p>
+          <p className="max-w-md text-sm text-[var(--dt-text-secondary)]">
+            If DeepTag saved you a headache, you can buy me a coffee.
+          </p>
+          <a
+            href="https://www.buymeacoffee.com/cyrilmyril"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-[var(--dt-radius-sm)] border border-[var(--dt-accent)]/50 px-4 py-2 text-sm font-medium text-[var(--dt-accent)] transition hover:bg-[var(--dt-accent-soft)]"
+          >
+            ☕ Buy me a coffee
+          </a>
+        </div>
+      </section>
+
       <footer className="border-t border-[var(--dt-border)] px-6 py-6 text-center text-xs text-[var(--dt-text-muted)] sm:px-10">
         DeepTag reads and writes files entirely in your browser. Nothing you open here is uploaded to a server.
       </footer>

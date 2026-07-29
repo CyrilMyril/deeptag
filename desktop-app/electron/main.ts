@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, dialog } from "electron";
+import { app, BrowserWindow, ipcMain, dialog, shell } from "electron";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import fs from "node:fs/promises";
@@ -27,6 +27,11 @@ function createWindow() {
       nodeIntegration: false,
       sandbox: false,
     },
+  });
+
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    if (url.startsWith("https:") || url.startsWith("http:")) shell.openExternal(url);
+    return { action: "deny" };
   });
 
   if (VITE_DEV_SERVER_URL) {

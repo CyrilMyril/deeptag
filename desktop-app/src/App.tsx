@@ -159,6 +159,17 @@ export default function App() {
           </p>
         )}
       </main>
+
+      <footer className="border-t border-[var(--dt-border)] px-6 py-4 text-center sm:px-10">
+        <a
+          href="https://www.buymeacoffee.com/cyrilmyril"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-xs font-medium text-[var(--dt-accent)] hover:underline"
+        >
+          ☕ Enjoying DeepTag? Buy me a coffee
+        </a>
+      </footer>
     </div>
   );
 }
