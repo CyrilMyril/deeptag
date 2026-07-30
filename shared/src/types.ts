@@ -34,6 +34,8 @@ export interface WriteCapability {
   supported: boolean;
   /** Human-readable reason shown when not supported */
   reason?: string;
+  /** Non-blocking caution shown even when supported is true */
+  warning?: string;
 }
 
 export interface ParsedMetadata {

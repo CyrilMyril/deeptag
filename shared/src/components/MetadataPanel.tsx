@@ -66,6 +66,7 @@ export function MetadataPanel({ meta, editing, values, hasChanges, busy, onChang
             hasChanges={hasChanges}
             canWrite={meta.write.supported}
             writeReason={meta.write.reason}
+            writeWarning={meta.write.warning}
             busy={busy}
             onStartEdit={onStartEdit}
             onCancelEdit={onCancelEdit}
